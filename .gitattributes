@@ -1,0 +1,3 @@
+# Keep shell scripts LF so they run correctly on Linux hosts (EC2) regardless of
+# the checkout platform's autocrlf setting.
+*.sh text eol=lf
