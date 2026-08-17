@@ -59,7 +59,7 @@ Offline, deterministic, CPU-only — no dataset download, GPU, training run, or
 cloud access required.
 
 ```bash
-pip install -r requirements-dev.txt
+pip install -r requirements-dev.txt  # includes requirements.txt
 pytest
 ```
 
