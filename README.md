@@ -1,17 +1,17 @@
-# Grad-CAM Explainability for Visual QA
+# Grad-CAM / Grad-CAM++ Visual QA Proof of Concept
 
-**Author:** J. Canady (JCanady)
+**Author:** Jonathan Canady (JCanady)
 
-Gradient-based visual explanations (Grad-CAM and Grad-CAM++) for image
-classifiers, paired with an offline quality-validation test suite. Both
-explanation methods are implemented from scratch (forward/backward hooks on the
-target conv layer) and compared across a from-scratch CNN and a fine-tuned
-ResNet-18 on the public CIFAR-10 and STL-10 datasets.
+A sanitized personal portfolio implementation based on an earlier visual-quality-assurance proof of concept. This repository demonstrates explainable computer vision for quality-validation workflows: it produces Grad-CAM and Grad-CAM++ visual explanations, validates outputs through an offline test suite, and includes an AWS-oriented handoff interface for a future IoT vision pipeline.
 
-This is a proof of concept toward an automotive / IoT computer-vision **QA**
-imaging pipeline: explain a classifier's decision, then treat unusual
-explanations as an inspectable quality signal. It uses public image datasets
-only and does not represent performance on any production inspection system.
+> Scope note: This is a standalone, sanitized portfolio project. It contains no proprietary code, data, configurations, customer information, or production credentials. The AWS pipeline components are interface-level tooling, not a claim of a deployed production system.
+
+## What I built
+
+- From-scratch Grad-CAM and Grad-CAM++ explainability implementations
+- Offline visual-QA validation and automated tests
+- Reproducible Python environment and test configuration
+- AWS-oriented lifecycle and pipeline-handoff tooling for a computer-vision QA workflow
 
 ## Layout
 
@@ -37,6 +37,8 @@ notes/                   # Grad-CAM / Grad-CAM++ paper map + terminology
 ## Setup
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
@@ -79,6 +81,13 @@ The fine-tuned ResNet-18 (CIFAR-10 ~91.8%, STL-10 ~90.2%) eliminates the
 all-zero degenerate heatmaps the tiny CNN produced and concentrates attention on
 the object rather than the background.
 
+## Evidence of engineering quality
+
+- Automated tests validate core explainability and quality-validation behavior
+- Public datasets are used for experimentation
+- AWS scripts are separated from local validation logic and include preflight, deployment, monitoring, and teardown paths
+- The repository is intentionally scoped as a proof of concept; documented boundaries are part of its design
+
 ## Future work: edge-to-cloud QA pipeline
 
 The intended production flow is an IoT computer-vision QA loop: an edge camera
@@ -103,3 +112,4 @@ used to produce the ResNet-18 results above.
 See [notes/paper_map.md](notes/paper_map.md) and
 [notes/terminology.md](notes/terminology.md) for the Grad-CAM (ICCV 2017) and
 Grad-CAM++ (WACV 2018) method summaries.
+
