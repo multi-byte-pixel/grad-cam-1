@@ -2,11 +2,9 @@
 
 **Author:** Jonathan Canady (JCanady)
 
-A sanitized personal portfolio implementation based on an earlier visual-quality-assurance proof of concept. This repository demonstrates explainable computer vision for quality-validation workflows: it produces Grad-CAM and Grad-CAM++ visual explanations, validates outputs through an offline test suite, and includes an AWS-oriented handoff interface for a future IoT vision pipeline.
+A Grad-CAM and Grad-CAM++ proof of concept with saved visualizations, explanation metrics, and offline tests. AWS scripts and a pipeline-handoff interface are included; they are not evidence of a deployed production system.
 
-> Scope note: This is a standalone, sanitized portfolio project. It contains no proprietary code, data, configurations, customer information, or production credentials. The AWS pipeline components are interface-level tooling, not a claim of a deployed production system.
-
-## What I built
+## Components
 
 - From-scratch Grad-CAM and Grad-CAM++ explainability implementations
 - Offline visual-QA validation and automated tests
@@ -77,9 +75,7 @@ downstream handoff interface contract.
 | ResNet-18 | Grad-CAM | 0.663 | 0.200 | 0.410 | 0 |
 | ResNet-18 | Grad-CAM++ | 0.618 | 0.200 | 0.425 | 0 |
 
-The fine-tuned ResNet-18 (CIFAR-10 ~91.8%, STL-10 ~90.2%) eliminates the
-all-zero degenerate heatmaps the tiny CNN produced and concentrates attention on
-the object rather than the background.
+The table summarizes committed metrics files, not an independently reproduced training run. Explanation metrics alone do not establish model accuracy or explanation faithfulness.
 
 ## Evidence of engineering quality
 
@@ -104,12 +100,10 @@ edge camera + QA model
   -> SageMaker               (retraining / batch re-inference)
 ```
 
-The existing `aws/` scripts provide a boto3 + paramiko EC2 GPU training toolkit
-used to produce the ResNet-18 results above.
+The existing `aws/` scripts provide a boto3 + paramiko EC2 GPU training toolkit. Cloud execution has not been verified in this review.
 
 ## References
 
 See [notes/paper_map.md](notes/paper_map.md) and
 [notes/terminology.md](notes/terminology.md) for the Grad-CAM (ICCV 2017) and
 Grad-CAM++ (WACV 2018) method summaries.
-
